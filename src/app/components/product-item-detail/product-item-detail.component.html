@@ -1,0 +1,35 @@
+<div *ngIf="product" div class="container">
+  <div class="d-flex gap-5 justify-content-center mt-5">
+    <div>
+      <img src="{{ product.url }}" alt=" {{ product.name }} " />
+    </div>
+    <div style="width: 300px">
+      <div class="h-100 d-flex flex-column justify-content-center">
+        <p>{{ product.name }}</p>
+        <p>{{ product.price | currency: "USD" }}</p>
+        <p>{{ product.description }}</p>
+        <form (ngSubmit)="addToCart()">
+          <div class="form-group">
+            Select amount:
+            <select
+              class="select-input form-control w-100"
+              [(ngModel)]="selectedQuantity"
+              [value]="1"
+              name="selectedQuantity"
+            >
+              <option
+                *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                [ngValue]="i"
+              >
+                {{ i }}
+              </option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mt-1">
+            Add to cart
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

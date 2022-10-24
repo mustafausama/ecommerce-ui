@@ -1,0 +1,29 @@
+<div class="w-100 h-100 d-flex flex-column align-items-center gap-2 mt-3">
+  <a
+    class="text-reset text-decoration-none d-flex flex-column align-items-center gap-2 mb-1"
+    routerLink="/product/{{ product.id }}"
+  >
+    <div class="p-3 border border-2">
+      <img src="{{ product.url }}" alt="{{ product.name }}" class="mw-100" />
+    </div>
+    <p class="m-0">{{ product.name }}</p>
+    <p class="m-0">{{ product.price | currency: "USD" }}</p>
+  </a>
+  <form class="w-50" (ngSubmit)="addToCart()">
+    <div class="form-group">
+      <select
+        class="select-input form-control"
+        [(ngModel)]="selectedQuantity"
+        [value]="1"
+        name="selectedQuantity"
+      >
+        <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [ngValue]="i">
+          {{ i }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 mt-1">
+      Add to cart
+    </button>
+  </form>
+</div>
