@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Product } from 'src/app/models/product.model';
+import { CartProduct, Product } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -23,5 +23,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  addToCart(productDetails: { id: number; quantity: number }) {
+    this.storeService.addToCart(productDetails.id, productDetails.quantity);
+    alert('Item added to cart!!');
   }
 }

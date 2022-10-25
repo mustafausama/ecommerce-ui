@@ -9,7 +9,7 @@
     <p class="m-0">{{ product.name }}</p>
     <p class="m-0">{{ product.price | currency: "USD" }}</p>
   </a>
-  <form class="w-50" (ngSubmit)="addToCart()">
+  <form class="w-50" (ngSubmit)="addToCartHandler()">
     <div class="form-group">
       <select
         class="select-input form-control"

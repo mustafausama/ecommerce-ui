@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
-import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,13 +8,17 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
+  @Output() addToCart: EventEmitter<{ id: number; quantity: number }> =
+    new EventEmitter();
   selectedQuantity: number = 1;
 
-  constructor(private storeService: StoreService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-  addToCart() {
-    this.storeService.addToCart(this.product.id, this.selectedQuantity);
-    alert('Item added to cart!!');
+  addToCartHandler() {
+    this.addToCart.emit({
+      id: this.product.id,
+      quantity: this.selectedQuantity,
+    });
   }
 }
